@@ -7,6 +7,7 @@ sc = StatsCan()
 df = sc.table_to_df("18-10-0004-01")
 st.title('Consumner Price Index - Canada')
 #st.dataframe(df)
+st.text('Statistics Canada. Table 18-10-0004-01  Consumer Price Index, monthly, not seasonally adjusted')
 
 def get_fruityvice_data(this_fruit_choice):
   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
