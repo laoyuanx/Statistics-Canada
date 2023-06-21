@@ -13,12 +13,10 @@ def get_fruityvice_data(this_fruit_choice):
   fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
   return fruityvice_normalized
 
+# User provide keyworkds as filter
 products_selected = st.multiselect("Pick some keywords:",set(df['Products and product groups']),['All-items','Food','Meat'])
-products_to_show = df.loc[products_selected]
 
-# Display the table on the page.
-st.dataframe(products_to_show)
-
+# Transform original df to chart_data
 chart_data=(df
  #.pivot(index=['GEO','Products and product groups'], columns='REF_DATE', values='VALUE')
  .rename(columns = {"Products and product groups":"ITEM"})
@@ -29,7 +27,11 @@ chart_data=(df
  #.plot()
 )
 
+#Dispaly a line chart
 st.line_chart(chart_data)
+
+# Display the table
+st.dataframe(chart_data)
 st.stop()
 
 streamlit.header("Fruityvice Fruit Advice!")
