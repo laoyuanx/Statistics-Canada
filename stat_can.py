@@ -43,14 +43,14 @@ data=(df
 
 #data_load_state.text('Loading data... done!')
 # Plot raw data
-def plot_raw_data(products_selected):
+def plot_raw_data(item):
 	fig = go.Figure()
-	fig.add_trace(go.Scatter(x=data['REF_DATE'], y=data['VALUE'], name=products_selected))
+	fig.add_trace(go.Scatter(x=data['REF_DATE'], y=data['VALUE'], name=item))
 	#fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
 	fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
 	st.plotly_chart(fig)
 	
-plot_raw_data()
+plot_raw_data(products_selected)
 st.stop()
 # Predict forecast with Prophet.
 df_train = data[['Date','Close']]
