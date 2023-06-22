@@ -62,8 +62,3 @@ st.plotly_chart(fig1)
 st.write("Forecast components")
 fig2 = m.plot_components(forecast)
 st.write(fig2)
-
-  else:
-    streamlit.dataframe(get_fruityvice_data(fruit_choice))
-except URLError as e:
-  streamlit.error()
