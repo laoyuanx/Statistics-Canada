@@ -16,7 +16,7 @@ st.title('Consumer Price Index Forecast - Canada')
 #stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
 #selected_stock = st.selectbox('Select dataset for prediction', stocks)
 #load consumer price index table to df
-@st.cache
+#@st.cache
 df = sc.table_to_df("18-10-0004-01")
 
 # User selects series for prediction
