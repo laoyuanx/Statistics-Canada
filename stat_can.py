@@ -22,8 +22,8 @@ df = sc.table_to_df("18-10-0004-01")
 # User selects series for prediction
 products_selected = st.selectbox("Select series for prediction:",set(df['Products and product groups']))
 
-period = st.slider('Months of prediction:', 1, 3)
-#period = n_years * 12
+n_months = st.slider('Months of prediction:', 1, 3)
+period = n_months * 30
 #data_load_state = st.text('Loading data...')
 #data = load_data(selected_stock)
 #st.subheader('Raw data')
