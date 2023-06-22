@@ -22,8 +22,8 @@ df = sc.table_to_df("18-10-0004-01")
 # User selects series for prediction
 products_selected = st.selectbox("Select series for prediction:",set(df['Products and product groups']))
 
-n_years = st.slider('Years of prediction:', 1, 5)
-period = n_years * 12
+period = st.slider('Months of prediction:', 1, 3)
+#period = n_years * 12
 #data_load_state = st.text('Loading data...')
 #data = load_data(selected_stock)
 #st.subheader('Raw data')
@@ -45,16 +45,16 @@ data=(df
 # Plot raw data
 def plot_raw_data(item):
 	fig = go.Figure()
-	fig.add_trace(go.Scatter(x=data['REF_DATE'], y=data['VALUE'], name=item))
+	fig.add_trace(go.Scatter(x=data['REF_DATE'], y=data['VALUE'], name='CPI'))
 	#fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
 	fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
 	st.plotly_chart(fig)
 	
 plot_raw_data(products_selected)
-st.stop()
+
 # Predict forecast with Prophet.
-df_train = data[['Date','Close']]
-df_train = df_train.rename(columns={"Date": "ds", "Close": "y"})
+df_train = data[['REF_DATE','VALUE']]
+df_train = df_train.rename(columns={"REF_DATE": "ds", "VALUE": "y"})
 
 m = Prophet()
 m.fit(df_train)
@@ -65,14 +65,14 @@ forecast = m.predict(future)
 st.subheader('Forecast data')
 st.write(forecast.tail())
     
-st.write(f'Forecast plot for {n_years} years')
+st.write(f'Forecast plot for {period} months')
 fig1 = plot_plotly(m, forecast)
 st.plotly_chart(fig1)
 
 st.write("Forecast components")
 fig2 = m.plot_components(forecast)
 st.write(fig2)
-
+st.stop()
 
 
 
