@@ -26,7 +26,7 @@ data=(df
  #.pivot(index=['GEO','Products and product groups'], columns='REF_DATE', values='VALUE')
  .rename(columns = {"Products and product groups":"ITEM"})
  #.query("ITEM in @products_selected and GEO == 'Canada'")
- .query("ITEM in @products_selected and GEO == 'Canada' and REF_DATE >= '2022-01-01'")
+ .query("ITEM in @products_selected and GEO == 'Canada' and REF_DATE >= '2020-01-01'")
  #.pivot(index=['REF_DATE'], columns='ITEM', values='VALUE')
  #.reset_index()
  #.set_index('REF_DATE')
