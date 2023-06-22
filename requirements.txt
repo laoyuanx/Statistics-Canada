@@ -1,1 +1,3 @@
 stats-can
+fbprophet
+plotly
